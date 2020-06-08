@@ -1,0 +1,68 @@
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Toolbar, TextField, IconButton } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ChatArea from './components/ChatArea';
+import InboxList from './components/InboxList';
+import { withService } from './services/InboxService';
+import { useChat } from './components/useChat';
+
+interface IProps {
+    busy: boolean;
+    activeChat: string;
+    setActiveChat: (id: string) => void;
+    onMessageSubmit: (message: string) => void;
+    chats: any;
+    _activeChat: any;
+}
+
+const useStyles = makeStyles((theme: any) => ({
+    root: {
+        cursor: 'pointer',
+        height: '100%',
+        display: 'flex',
+        overflow: 'hidden',
+    },
+}));
+
+function InboxView(props: IProps) {
+    const classes = useStyles(props);
+    const [activeChatId, setActiveChatId] = useState(null);
+    const [activeChat, setActiveChat] = useState(null);
+    const chat = useChat();
+
+    function onMessageSubmit(message: string) {
+        chat.sendMessage({
+            chatId: activeChatId,
+            content: message,
+        });
+    }
+
+    return (
+        <div className={classes.root}>
+            <InboxList
+                activeChat={activeChat}
+                activeChatId={activeChatId}
+                setActiveChatId={setActiveChatId}
+                busy={props.busy}
+                chats={chat.chats}
+            />
+            <ChatArea
+                activeChat={activeChat}
+                activeChatId={activeChatId}
+                setActiveChatId={setActiveChatId}
+                busy={props.busy}
+                onMessageSubmit={onMessageSubmit}
+                chats={chat.chats}
+            />
+        </div>
+    );
+}
+
+export default withService(InboxView);

@@ -1,0 +1,20 @@
+{
+    "extends": ["tslint:latest", "tslint-react", "tslint-react-hooks"],
+    "rules": {
+        "jsx-wrap-multiline": false,
+        "quotemark": false,
+        "no-submodule-imports": false,
+        "ordered-imports": false,
+        "no-implicit-dependencies": false,
+        "jsx-no-lambda": false,
+        "object-literal-key-quotes": false,
+        "jsx-no-multiline-js": false,
+        "no-namespace": false,
+        "max-classes-per-file": false,
+        "object-literal-sort-keys": false,
+        "jsx-boolean-value": false,
+        "trailing-comma": false,
+        "eofline": false,
+        "variable-name": false
+    }
+}

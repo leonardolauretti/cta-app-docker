@@ -1,0 +1,40 @@
+
+<input
+                        accept="image/*"
+                        className={'lolo'}
+                        style={{ display: 'none' }}
+                        id="raised-button-file"
+                        //multiple
+                        type="file"
+                    />
+                    <label
+                        htmlFor="raised-button-file"
+                        style={{ width: '100%' }}
+                    >
+                        <Button component={'span'} fullWidth>
+                            Alterar foto
+                        </Button>
+                    </label>
+
+                    {/*<Button fullWidth onClick={() => setUploadVisibility(true)}>
+                        Alterar foto
+                    </Button>*/}
+                    {/*<DropzoneArea 
+                        onChange={(e) => console.log(e)}
+                        acceptedFiles={['image/*']}
+                        filesLimit={1}
+                        maxFileSize={3*1024*1024}
+                        dropzoneText={'Arraste e solte uma imagem ou clique aqui'}
+                    />*/}
+                    <DropzoneDialog
+                        open={uploadVisibility}
+                        dialogTitle={'Enviar imagem de perfil'}
+                        dropzoneText={'Arraste e solte uma imagem ou clique aqui'}
+                        cancelButtonText={'Cancelar'}
+                        submitButtonText={'Enviar'}
+                        filesLimit={1}
+                        onSave={() => {}}
+                        acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                        showPreviews={true}
+                        maxFileSize={5000000}
+                    ></DropzoneDialog>
